@@ -1,9 +1,27 @@
-const components = {
-  text: require('./components/text')
-}
+const postcss = require('postcss')
+const hooks = require('./components')
 
-const hooks = Object.keys(components).reduce(function (pre, key) {
-  return Object.assign(pre, components[key])
-}, {})
+const propArr = Object.keys(hooks)
 
-module.exports = hooks
+const plugin = postcss.plugin('postcss-plugin-weex', function (opts) {
+  return function (root, result) {
+    root.walkRules(rule => {
+      const appendDecls = []
+      rule.walkDecls(decl => {
+        const { prop, value } = decl
+        if (propArr.indexOf(prop) > -1) {
+          const styleObj = hooks[prop](value)
+          for (const k in styleObj) {
+            appendDecls.push(postcss.decl({
+              prop: k,
+              value: styleObj[k]
+            }))
+          }
+        }
+      })
+      rule.append.apply(rule, appendDecls)
+    })
+  }
+})
+
+module.exports = plugin

@@ -14,5 +14,8 @@
     "web"
   ],
   "author": "MrRaindrop",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "postcss": "^6.0.14"
+  }
 }

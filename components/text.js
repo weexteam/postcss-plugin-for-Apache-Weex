@@ -3,8 +3,8 @@ const hooks = {}
 hooks.lines = function (value) {
   return {
     overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    WebkitLineClamp: value
+    'text-overflow': 'ellipsis',
+    '-webkit-line-clamp': value
   }
 }
 
