@@ -1,6 +1,7 @@
 const components = {
   text: require('./text'),
-  indicator: require('./indicator')
+  indicator: require('./indicator'),
+  input: require('./input')
 }
 
 const hooks = Object.keys(components).reduce(function (pre, key) {
