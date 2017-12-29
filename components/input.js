@@ -27,7 +27,7 @@ hooks['placeholder-color'] = function (value, opts) {
   const cssRules = cssRoot.nodes
   const parent = rule.parent
   for (let i = 0, l = cssRules.length; i < l; i++) {
-    rule.parent.insertAfter(rule, cssRules[i])
+    parent.insertAfter(rule, cssRules[i])
   }
 }
 

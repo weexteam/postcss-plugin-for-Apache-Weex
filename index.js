@@ -11,6 +11,9 @@ const plugin = postcss.plugin('postcss-plugin-weex', function (opts) {
         const { prop, value } = decl
         if (propArr.indexOf(prop) > -1) {
           const styleObj = hooks[prop](value, { root, rule, decl })
+          if (!styleObj) {
+            return
+          }
           for (const k in styleObj) {
             appendDecls.push(postcss.decl({
               prop: k,
@@ -19,7 +22,7 @@ const plugin = postcss.plugin('postcss-plugin-weex', function (opts) {
           }
         }
       })
-      // rule.append.apply(rule, appendDecls)
+      rule.append.apply(rule, appendDecls)
     })
   }
 })
