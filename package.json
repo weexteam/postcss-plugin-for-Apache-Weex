@@ -1,6 +1,6 @@
 {
   "name": "postcss-plugin-weex",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "postcss plugin for weex-vue-render.",
   "main": "index.js",
   "scripts": {
