@@ -29,8 +29,8 @@ hooks['item-size'] = function (value, opts) {
   const { root, rule, decl } = opts
   const selector = rule.selector
   const newSelector = `${selector} .weex-indicator-item`
-  const newRule = postcss.parse(
-`${newSelector} {
+  const newRule = postcss.parse(`
+${newSelector} {
   width: ${value};
   height: ${value};
 }`

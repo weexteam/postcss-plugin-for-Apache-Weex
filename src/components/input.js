@@ -8,10 +8,10 @@ function getPlaceholderColorCSS (selector, placeholderColor) {
     ':-ms-input-placeholder',
     ':placeholder-shown'
   ]
-  const css = vendors.reverse().map(function (vendor) {
+  const css = vendors.map(function (vendor) {
     return `
 ${selector}${vendor} {
-  color:${placeholderColor};
+  color: ${placeholderColor};
 }`
   }).join('\n')
   return css
@@ -22,13 +22,7 @@ const hooks = {}
 hooks['placeholder-color'] = function (value, opts) {
   const { root, rule } = opts
   const selector = rule.selector
-  const css = getPlaceholderColorCSS(selector, value)
-  const cssRoot = postcss.parse(css)
-  const cssRules = cssRoot.nodes
-  const parent = rule.parent
-  for (let i = 0, l = cssRules.length; i < l; i++) {
-    parent.insertAfter(rule, cssRules[i])
-  }
+  root.insertAfter(rule, getPlaceholderColorCSS(selector, value))
 }
 
 module.exports = hooks
