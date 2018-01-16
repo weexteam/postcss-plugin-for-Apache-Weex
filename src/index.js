@@ -10,7 +10,7 @@ const unitsToPx = {
 }
 
 const unitRegx = function (unit) {
-  return new RegExp(`([+-]?\\d+(?:.\\d*)?)(${unit})`, )
+  return new RegExp(`([+-]?\\d+(?:.\\d*)?)(${unit})`, 'gi')
 }
 
 const unitWxRegx = unitRegx('wx')
