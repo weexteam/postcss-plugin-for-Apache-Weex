@@ -21,8 +21,10 @@ const hooks = {}
 
 hooks['placeholder-color'] = function (value, opts) {
   const { root, rule } = opts
-  const selector = rule.selector
-  root.insertAfter(rule, getPlaceholderColorCSS(selector, value))
+  const selectors = rule.selectors
+  selectors.forEach(selector => {
+    root.insertAfter(rule, getPlaceholderColorCSS(selector, value))
+  })
 }
 
 module.exports = hooks
